@@ -28,7 +28,6 @@ div.footnotes {
 .alignRight {
     float: right;
 }
-
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -249,17 +248,20 @@ This app visualises inequity in access to traumatic brain injury care across QLD
 
 <https://access.healthequity.link/>
 
-![](www/iTRAQI-team-logos.png){class="center"}
+![](www/iTRAQI-team-logos.png){class="center" width=75%}
 
 ## Resources
 
-<a href='https://mastering-shiny.org/'><img src='www/mastering-shiny.png' height="175" /></a>
-<br>
-<br>
-<br>
-![](www/iTRAQI-hex.png){width=150px}
-
-<https://rwparsons.github.io/interactive-maps/> 
+<table style="width:65%">
+    <tr>
+        <td valign="middle" style="font-size:20px"><https://rwparsons.github.io/interactive-maps/></td>
+        <td valign="top"><img src="www/iTRAQI-hex.png" alt="" width="150"/></td>
+    </tr>
+    <tr>
+        <td valign="middle"><a href='https://mastering-shiny.org/'><img src='www/mastering-shiny.png' height="200" /></a></td>
+        <td valign="middle"><a href='https://engineering-shiny.org/'><img src='www/engineering-shiny.jpeg' height="200" /></a></td>
+    </tr>
+</table>
 
 
 ## Thank you
@@ -277,7 +279,7 @@ This app visualises inequity in access to traumatic brain injury care across QLD
 <br>
 <br>
 <br>
-
+<br>
 
 Slides were made using `ioslides_presentation` in RMarkdown
 
