@@ -24,8 +24,11 @@ div.footnotes {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
 }
+.alignRight {
+    float: right;
+}
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -52,7 +55,11 @@ $(document).ready(function() {
 - How shiny can help make your work more accessible
 - Examples
 
+>- ![](www/popcorn.gif)
+
 ## shiny
+
+![](www/javascript-stats.jpg){.alignRight height=500}
 
 - Framework for making web apps with R code
 - Relies on a shiny server that runs R code behind the scenes (CDS has a shinyapps.io plan!)
@@ -60,14 +67,15 @@ $(document).ready(function() {
 - Uses reactive programming so that the outputs react the user's inputs
 
 
+
 ## Making a shiny app {.smaller}
 - The **easiest** way to make a shiny app is to make a new R project from RStudio
 
-![](www/new-project.png){height=200px}
+![](www/new-project.png){.center height=225px}
 
 - The next easiest way is to create a new R script, call is `app.R`, and create your app starting from a snippet
 
-![](www/shiny-snippet.png){height=200px}
+![](www/shiny-snippet.png){.center height=190px}
 
 ## Components {.smaller}
 
