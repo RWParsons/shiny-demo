@@ -1,11 +1,10 @@
 ---
-title: "Introduction to using shiny"
+title: "Introduction to shiny"
 author: "Rex Parsons"
 date: "2022-06-17"
 output:
   ioslides_presentation:
     widescreen: true
-    smaller: true
     logo: www/shiny-hex.png
 ---
 
@@ -61,7 +60,7 @@ $(document).ready(function() {
 - Uses reactive programming so that the outputs react the user's inputs
 
 
-## Making a shiny app
+## Making a shiny app {.smaller}
 - The **easiest** way to make a shiny app is to make a new R project from RStudio
 
 ![](www/new-project.png){height=200px}
@@ -204,17 +203,21 @@ shinyApp(ui, server)
 ## shiny apps can make your work more accessible
 
 - For new methods and models, R packages can work well for regular useRs but not necessarily others
-- Some results are complex and hard to show all the possible way data could be visusalised in a single paper
+- Some results are complex and visualise in one **best** way
+
+![](www/math.gif){width=320px}
+![](www/BoxViolinSmaller.gif){width=650px}
 
 ## shiny maps can make your work more accessible
 
-### circacompare
+### `{circacompare}` {.smaller}
 
 App that allows users to upload their data and fit a nonlinear model (using `nls()`) that estimates differences in circadian characteristics between two groups.
 
 <https://rwparsons.shinyapps.io/circacompare/>
 
 Most use the [R package](https://cran.r-project.org/web/packages/circacompare/index.html) but sometimes, they will say that they specifically used the shiny app.<footnote>Liu, Xianhui, et al. "Hexosamine biosynthetic pathway integrates circadian and metabolic signals to regulate daily rhythms in protein O-linked N-acetylglucosaminylation." *bioRxiv* (2020).</footnote>
+
 
 ![](www/circacompare-shiny.png)
 
@@ -223,12 +226,12 @@ Most use the [R package](https://cran.r-project.org/web/packages/circacompare/in
 ### ECOHIS to CHU9D mapping
 
 - Usually this type of work has a linear model and equation in paper
-- This work had many models and variable levels of performance (and assumption destruction)
+- But this project had many models and variable levels of performance/appropriateness
 - App gives the user the ability to get predictions with new data and inspect diagnostic plots
 
 ---
 
-![](www/ecohis-mapping-app.PNG){width=100%}
+![](www/ecohis-mapping-app-1.PNG){width=100%}
 
 ## shiny maps can make your work more accessible
 
@@ -242,7 +245,7 @@ This app visualises inequity in access to traumatic brain injury care across QLD
 
 ## Resources
 
-<a href='https://mastering-shiny.org/'><img src='www/mastering-shiny.png' height="150" /></a>
+<a href='https://mastering-shiny.org/'><img src='www/mastering-shiny.png' height="175" /></a>
 <br>
 <br>
 <br>
@@ -253,19 +256,16 @@ This app visualises inequity in access to traumatic brain injury care across QLD
 
 ## Thank you
 
-![](www/dhcrc-logo.png){width=20%}
-![](www/aushsi-logo.png){width=20%}
+![](www/aushsi-logo.png){width=30%}
 ![](www/cds-logo.png){width=40%}
 
 ![](www/twitter-logo.png){width=30 align="left"} @Rex_Parsons8
 
 
 
-![](www/github-logo.png){width=30px align="left"}  @RWParsons
+![](www/github-logo.png){width=30px align="left"}   @RWParsons
 
 
-<br>
-<br>
 <br>
 <br>
 <br>
