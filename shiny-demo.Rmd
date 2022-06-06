@@ -66,30 +66,32 @@ library(leaflet)
 towns <- read.csv("input/QLD_locations_with_RSQ_times_20220518.csv")
 
 ui <- fluidPage(
+  tags$head(
+    tags$style(HTML("
+      div.full-page {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        padding: 0;
+      }
+      "
+    ))
+  ),
   div(
-      class="outer",         
-      tags$head(
-          tags$style(HTML("
-            div.outer {
-              position: fixed;
-              top: 41px;
-              left: 0;
-              right: 0;
-              bottom: 0;
-              overflow: hidden;
-              padding: 0;
-            }
-            "
-          ))
-        ),
-      leafletOutput('map', height="100%", width="100%"),
-        absolutePanel(
-        top=75, left=10, 
-        class = "panel panel-default",
-        selectInput('town_name', 'Town Name',
-                  choices = c('None', sort(towns$location)),
-                  selected = "None")
+    class="full-page",
+    leafletOutput('map', height="100%", width="100%"),
+    absolutePanel(
+      top=75, left=10,
+      class = "panel panel-default",
+      selectInput(
+        'town_name', 'Town Name',    
+        choices = c('None', sort(towns$location)),
+        selected = "None"
       )
+    )
   )
 )
 
@@ -109,13 +111,13 @@ server <- function(input, output, session) {
   
   observe({
     if(input$town_name!="None") {
-      town_df <- towns[towns$location==input$town_name, ]
+      town_row <- towns[towns$location==input$town_name, ]
       leafletProxy("map") %>%
-        flyTo(lng=town_df$x, lat=town_df$y, zoom=10)
+        flyTo(lng=town_row$x, lat=town_row$y, zoom=10)
     } else {
       leafletProxy("map") %>%
         flyToBounds(
-          lng1 = 137.725724, lat1 = -28.903687, 
+          lng1 = 137.725724, lat1 = -28.903687,
           lng2 = 151.677076, lat2 = -10.772608
         )
     }
@@ -278,8 +280,8 @@ shinyApp(ui, server)
 
 ## shiny apps can make your work more accessible
 
-- For new methods and models, R packages can work well for regular useRs but not necessarily others
-- Some results are complex and visualise in one **best** way
+- For new methods and models, R packages can work well for regular useRs but not necessarily for others
+- Some results are complex and hard to visualise in one **best** way
 
 ![](www/math.gif){width=320px}
 ![](www/BoxViolinSmaller.gif){width=650px}
@@ -461,11 +463,7 @@ This app visualises inequity in access to traumatic brain injury care across QLD
 
 
 
-![](www/github-logo.png){width=30px align="left"}   @RWParsons
+![](www/github-logo.png){width=30px align="left"} @RWParsons
 
-![](www/website-icon.png){width=30px align="left"}  http://rwparsons.github.io/
-
-<br>
-<br>
-
+![](www/website-icon.png){width=30px align="left"} http://rwparsons.github.io/
 

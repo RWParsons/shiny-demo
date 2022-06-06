@@ -1,114 +1,63 @@
+
 library(shiny)
-library(circacompare)
-library(tidyverse)
-library(kableExtra)
+library(leaflet)
+
+towns <- read.csv("input/QLD_locations_with_RSQ_times_20220518.csv")
 
 ui <- fluidPage(
-  titlePanel("CircaCompare"),
-  sidebarLayout(
-    sidebarPanel(
-      fileInput("file1", "Choose CSV File",
-                accept = c(
-                  "text/csv",
-                  "text/comma-separated-values,text/plain",
-                  ".csv"
-                )
-      ),
-      tags$br(),
-      uiOutput("time_selecter"),
-      uiOutput("group_selecter"),
-      uiOutput("outcome_selecter"),
-      tags$br(),
-      uiOutput("ui.action")
-    ),
-    mainPanel(
-      plotOutput("plot"),
-      tableOutput("contents")
-    )
+  tags$head(
+    tags$style(HTML("
+      div.full-page {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        padding: 0;
+      }
+      "
+    ))
+  ),
+  div(
+      class="full-page",
+      leafletOutput('map', height="100%", width="100%"),
+      absolutePanel(
+        top=75, left=10,
+        class = "panel panel-default",
+        selectInput('town_name', 'Town Name',
+                    choices = c('None', sort(towns$location)),
+                    selected = "None")
+      )
   )
 )
 
 server <- function(input, output, session) {
-  filedata <- reactive({
-    infile <- input$file1
-    if (is.null(infile)) {
-      return(NULL)
-    }
-    read.csv(infile$datapath)
-  })
-  
-  cols <- reactive({
-    df <- filedata()
-    if (is.null(df)) {
-      return(NULL)
-    } else {
-      return(names(df))
-    }
-  })
-  
-  output$time_selecter <- renderUI({
-    if(is.null(cols())){
-      return(NULL)
-    }
-    selectInput("time", "Select the TIME (INDEPENDENT) variable from:", cols())
-  })
-  
-  output$group_selecter <- renderUI({
-    if(is.null(cols())){
-      return(NULL)
-    }
-    selectInput("group", "Select the GROUPING variable from:", cols())
-  })
-  
-  output$outcome_selecter <- renderUI({
-    if(is.null(cols())){
-      return(NULL)
-    }
-    selectInput("outcome", "Select the OUTCOME (DEPENDENT) variable from:", cols())
-  })
-  
-  output$ui.action <- renderUI({
-    if (is.null(input$file1)) {
-      return()
-    }
-    actionButton("action", "Run")
-  })
-  
-  observeEvent(input$action, {
-    isolate({
-      df <- filedata()
-      if (is.null(df)) {
-        return(NULL)
-      }
-      set.seed(42)
-      cc_obj <- circacompare(
-        df,
-        col_time = input$time,
-        col_group = input$group,
-        col_outcome = input$outcome
+  output$map <- renderLeaflet({
+    leaflet() %>%
+      addTiles() %>%
+      addCircleMarkers(
+        lng=towns$x,
+        lat=towns$y,
+        popup=glue::glue("<b>Location:</b> {towns$location}"),
+        radius=2, 
+        fillOpacity=0,
+        group="Towns"
       )
-    })
-    
-    output$contents <- renderText({
-      if (class(cc_obj) != "list") {
-        return(cc_obj)
-      }
-      cc_obj$summary %>%
-        mutate(
-          value = as.character(value),
-          value = ifelse(value == 1 & parameter == "Both groups were rhythmic", TRUE, value)
-        ) %>%
-        kable(format = "html", escape = F) %>%
-        kable_styling("striped", full_width = F)
-    })
-    
-    output$plot <- renderPlot({
-      if (class(cc_obj) != "list") {
-        return(NULL)
-      }
-      cc_obj$plot
-    })
+  })
+  
+  observe({
+    if(input$town_name!="None") {
+      town_row <- towns[towns$location==input$town_name, ]
+      leafletProxy("map") %>%
+        flyTo(lng=town_row$x, lat=town_row$y, zoom=10)
+    } else {
+      leafletProxy("map") %>%
+        flyToBounds(
+          lng1 = 137.725724, lat1 = -28.903687, 
+          lng2 = 151.677076, lat2 = -10.772608
+        )
+    }
   })
 }
-
 shinyApp(ui, server)
