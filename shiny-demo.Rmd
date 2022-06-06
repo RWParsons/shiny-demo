@@ -100,7 +100,7 @@ server <- function(input, output, session) {
       addCircleMarkers(
         lng=towns$x,
         lat=towns$y,
-        popup=glue::glue("<b>Location:</b> {towns$acute_care_centre}"),
+        popup=glue::glue("<b>Location:</b> {towns$location}"),
         radius=2, 
         fillOpacity=0,
         group="Towns"
