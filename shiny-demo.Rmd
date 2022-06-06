@@ -278,6 +278,13 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
+## There are also lots of ways to show outputs to your users
+
+```{r}
+funs <- ls("package:shiny")
+funs[grepl("output$", tolower(funs))]
+```
+
 ## shiny apps can make your work more accessible
 
 - For new methods and models, R packages can work well for regular useRs but not necessarily for others
@@ -286,13 +293,17 @@ shinyApp(ui, server)
 ![](www/math.gif){width=320px}
 ![](www/BoxViolinSmaller.gif){width=650px}
 
-## shiny maps can make your work more accessible
+## shiny apps can make your work more accessible
 
 ### `{circacompare}` {.smaller}
 
 App that allows users to upload their data and fit a nonlinear model (using `nls()`) that estimates differences in circadian characteristics between two groups.
 
 <https://rwparsons.shinyapps.io/circacompare/>
+
+![](www/circacompare-plot.png){.center height=300px}
+
+## `{circacompare}` {.smaller}
 
 Most use the [R package](https://cran.r-project.org/web/packages/circacompare/index.html) but sometimes, they will say that they specifically used the shiny app.<footnote>Liu, Xianhui, et al. "Hexosamine biosynthetic pathway integrates circadian and metabolic signals to regulate daily rhythms in protein O-linked N-acetylglucosaminylation." *bioRxiv* (2020).</footnote>
 
@@ -418,7 +429,7 @@ shinyApp(ui = ui, server = server)
 ```
 
 
-## shiny maps can make your work more accessible
+## shiny apps can make your work more accessible
 
 ### ECOHIS to CHU9D mapping
 
@@ -430,7 +441,7 @@ shinyApp(ui = ui, server = server)
 
 ![](www/ecohis-mapping-app-1.PNG){width=100%}
 
-## shiny maps can make your work more accessible
+## shiny apps can make your work more accessible
 
 ### iTRAQI ![](www/iTRAQI-hex.png){width=170px align="right"}
 
