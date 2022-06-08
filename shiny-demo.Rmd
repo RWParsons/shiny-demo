@@ -14,6 +14,21 @@ knitr::opts_chunk$set(echo = TRUE, message=F)
 ```
 
 <style>
+body slides > slide {
+  height: 900px;
+  width: 900px;
+  margin-top: -450px;    /* half of height */
+}
+iframe shiny-frame {
+  height: 1200px;
+  width: 100%;
+}
+p {
+    margin-top: 0px ;
+    margin-bottom: 0px ; 
+    height: 150%;
+    width: 100%;
+} 
 div.footnotes {
   position: absolute;
   bottom: 0;
@@ -301,7 +316,8 @@ Most use the [R package](https://cran.r-project.org/web/packages/circacompare/in
 
 ## `{circacompare}` <115 lines of code
 
-```{r, echo=FALSE}
+<div style="margin-left:-50px; margin-top:-50px; width:100%; height:1200px">
+```{r, echo=FALSE, fig.height=24}
 library(shiny)
 library(circacompare)
 library(tidyverse)
@@ -414,9 +430,9 @@ server <- function(input, output, session) {
   })
 }
 
-shinyApp(ui = ui, server = server)
+shinyApp(ui = ui, server = server, options=list(height="100vh"))
 ```
-
+</div>
 
 ## shiny maps can make your work more accessible
 
