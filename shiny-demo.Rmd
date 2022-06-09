@@ -485,11 +485,16 @@ This app visualises inequity in access to traumatic brain injury care across QLD
 
 <https://access.healthequity.link/>
 
+```{r, eval=F}
+shiny::runGitHub("RWParsons/iTRAQI_app")
+```
+
 ![](www/iTRAQI-team-logos.png){class="center" width=75%}
 
 
-## Making an interactive map
+## Making an interactive map {.smaller}
 
+data: <https://raw.githubusercontent.com/RWParsons/shiny-demo/main/input/qld_towns.csv>
 
 ## Resources
 
@@ -518,3 +523,10 @@ This app visualises inequity in access to traumatic brain injury care across QLD
 
 ![](www/website-icon.png){width=30px align="left"} http://rwparsons.github.io/
 
+slides: [github.com/RWParsons/shiny-demo](https://github.com/RWParsons/shiny-demo)
+
+Code for apps: 
+
+* [RWParsons/circacompare_shiny](https://github.com/RWParsons/circacompare_shiny)
+* [RWParsons/iTRAQI_app](https://github.com/RWParsons/iTRAQI_app)
+* [RWParsons/shiny-demo/app.R](https://github.com/RWParsons/shiny-demo/blob/main/app.R)
