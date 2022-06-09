@@ -15,19 +15,19 @@ knitr::opts_chunk$set(echo = TRUE, message=F)
 
 <style>
 body slides > slide {
-  height: 900px;
+  height: 800px;
   width: 900px;
-  margin-top: -450px;    /* half of height */
+  margin-top: -400px;    /* half of height */
 }
 iframe shiny-frame {
   height: 1200px;
   width: 100%;
 }
 p {
-    margin-top: 0px ;
-    margin-bottom: 0px ; 
-    height: 150%;
-    width: 100%;
+  margin-top: 0px ;
+  margin-bottom: 0px ; 
+  height: 150%;
+  width: 100%;
 } 
 div.footnotes {
   position: absolute;
@@ -148,7 +148,7 @@ shinyApp(ui, server)
 
 - Framework for making web apps with R code
 - Relies on a shiny server that runs R code behind the scenes (CDS has a shinyapps.io plan!)
-- Means that you can make web apps with little-to-no knowledge of HTML, CSS or Javascript (unless you want to make things highly personalised)
+- Means that you can make web apps with little-to-no knowledge of HTML, CSS or JavaScript (unless you want to make things highly personalised)
 - Uses reactive programming so that the outputs react the user's inputs
 
 
@@ -253,6 +253,26 @@ shinyApp(ui, server)
 
 ---
 
+<div class="notes">
+```
+ui <- fluidPage(
+  numericInput(
+    "sample_size", 
+    "Select sample size:", 
+    value=20
+  ),
+  plotOutput("plot")
+)
+
+server <- function(input, output, session) {
+  output$plot <- renderPlot({
+    hist(rnorm(n=input$sample_size))
+  })
+}
+
+shinyApp(ui, server)
+```
+</div>
 
 ```{r, echo=FALSE}
 ui <- fluidPage(
@@ -466,6 +486,10 @@ This app visualises inequity in access to traumatic brain injury care across QLD
 <https://access.healthequity.link/>
 
 ![](www/iTRAQI-team-logos.png){class="center" width=75%}
+
+
+## Making an interactive map
+
 
 ## Resources
 
