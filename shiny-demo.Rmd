@@ -32,6 +32,7 @@ p {
 div.footnotes {
   position: absolute;
   bottom: 0;
+  margin-left: 35px;
   margin-bottom: 10px;
   width: 80%;
   font-size: 0.6em;
@@ -338,12 +339,11 @@ App that allows users to upload their data and fit a nonlinear model (using `nls
 
 ![](www/circacompare-plot.png){.center height=300px}
 
-## `{circacompare}` {.smaller}
+## `{circacompare}`
 
 Most use the [R package](https://cran.r-project.org/web/packages/circacompare/index.html) but sometimes, they will say that they specifically used the shiny app.<footnote>Liu, Xianhui, et al. "Hexosamine biosynthetic pathway integrates circadian and metabolic signals to regulate daily rhythms in protein O-linked N-acetylglucosaminylation." *bioRxiv* (2020).</footnote>
 
-
-![](www/circacompare-shiny.png)
+<img src="www/circacompare-shiny.png" width="950"/>
 
 ## `{circacompare}` <115 lines of code
 
