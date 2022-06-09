@@ -78,7 +78,7 @@ $(document).ready(function() {
 library(shiny)
 library(leaflet)
 
-towns <- read.csv("input/QLD_locations_with_RSQ_times_20220518.csv")
+towns <- read.csv("input/qld_towns.csv")
 
 ui <- fluidPage(
   tags$head(

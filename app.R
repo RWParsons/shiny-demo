@@ -1,8 +1,9 @@
-
 library(shiny)
 library(leaflet)
+library(RCurl)
 
-towns <- read.csv("input/QLD_locations_with_RSQ_times_20220518.csv")
+towns_url <- getURL("https://raw.githubusercontent.com/RWParsons/shiny-demo/main/input/qld_towns.csv")
+towns <- read.csv(text = towns_url)
 
 ui <- fluidPage(
   tags$head(
